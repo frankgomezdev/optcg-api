@@ -17,9 +17,17 @@ const cardSchema = new mongoose.Schema({
     color: String,
     card_type: String,
     effect: String,
-    image_url: String,
+    image_url: {
+        type: String,
+        unique: true
+    },
     alternate_art: Boolean,
-    series_id: Number
+    series_id: Number,
+    card_identifier: {
+        type: String,
+        required: true,
+        unique: true
+    }
 }, { timestamps: true});
 
 cardSchema.index({ name: 'text', effect: 'text', card_type: 'text'});
